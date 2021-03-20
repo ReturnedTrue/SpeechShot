@@ -13,7 +13,8 @@ while True:
 
     try:
         said = recogniser.recognize_google(audio)
-        if (said == "screenshot"):
+        #its not good but it works
+        if (said == "screenshot" or said == "take picture" or said == "take screenshot" or said == "picture" or said == "print screen" or said == "printscreen" or said == "screen"):
             print("Screenshotting...")
 
             content = grab()
