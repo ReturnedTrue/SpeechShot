@@ -1,0 +1,52 @@
+name: Publisher
+
+on:
+  [push, pull_request]:
+    tags:
+      - 'v*'
+
+env:
+  PYTHON_OPTIMIZE=1
+
+jobs:
+  build:
+    name: Publish for ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            artifact_name: speechshot
+            asset_name: speechshot-linux-amd64
+          - os: windows-latest
+            artifact_name: speechshot.exe
+            asset_name: speechshot-windows-amd64
+          - os: macos-latest
+            artifact_name: speechshot
+            asset_name: speechshot-macos-amd64
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.7.3'
+
+      - name: Install Pyinstaller
+        run:
+          pip install pyinstaller
+
+      - name: Build binary
+        run:
+          pyinstaller --onefile --name speechshot index.py
+
+      - name: Upload binary to release
+        uses: svenstaro/upload-release-action@2.2.1
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: dist/${{ matrix.artifact_name }}
+          asset_name: ${{ matrix.asset_name }}
+          tag: ${{ github.ref }}
+    
