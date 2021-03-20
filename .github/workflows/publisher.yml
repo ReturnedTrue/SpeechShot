@@ -35,7 +35,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.7.3'
+          python-version: 'pypy-3.7-v7.3.3'
 
       - name: Install Pyinstaller
         run:
