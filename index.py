@@ -3,8 +3,13 @@ from tkinter.filedialog import asksaveasfilename
 import speech_recognition as speech
 
 typesallowed = [("PNG Image", "*.png"), ("JPEG Image", "*.jpeg"), ("GIF Image", "*.gif")]
-
-words = ["screenshot", "take picture", "take screenshot", "picture", "print screen", "printscreen"]
+words = [
+    "screenshot", 
+    "take picture", 
+    "take screenshot", 
+    "picture", 
+    "print screen"
+]
 
 while True:
     recogniser = speech.Recognizer()
@@ -15,7 +20,6 @@ while True:
 
     try:
         said = recogniser.recognize_google(audio)
-        #its not good but it works
         if (said in words):
             print("Screenshotting...")
 
@@ -27,7 +31,7 @@ while True:
                     content.save(filename)
                     print("Saved as: {0}".format(filename))
                 except ValueError:
-                    print("Was unable to save with that file extension.")
+                    print("Unable to save with that file extension.")
 
             else:
                 print("Chosen not to save file.")
