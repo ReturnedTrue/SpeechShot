@@ -4,6 +4,8 @@ import speech_recognition as speech
 
 typesallowed = [("PNG Image", "*.png"), ("JPEG Image", "*.jpeg"), ("GIF Image", "*.gif")]
 
+words = ["screenshot", "take picture", "take screenshot", "picture", "print screen", "printscreen"]
+
 while True:
     recogniser = speech.Recognizer()
 
@@ -14,7 +16,7 @@ while True:
     try:
         said = recogniser.recognize_google(audio)
         #its not good but it works
-        if (said == "screenshot" or said == "take picture" or said == "take screenshot" or said == "picture" or said == "print screen" or said == "printscreen" or said == "screen"):
+        if (said in words):
             print("Screenshotting...")
 
             content = grab()
