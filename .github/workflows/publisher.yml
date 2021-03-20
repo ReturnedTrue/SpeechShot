@@ -35,11 +35,11 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
-          python-version: 'pypy-3.7-v7.3.3'
+          python-version: '3.7.3'
 
-      - name: Setup Linux
+      - name: Linux test
         run: 
-          sudo apt-get install python3-dev
+          find /usr/lib -name libpython*
         if: matrix.os == 'ubuntu-latest'
 
       - name: Install Pyinstaller
