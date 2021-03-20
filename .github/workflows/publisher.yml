@@ -39,7 +39,7 @@ jobs:
 
       - name: Setup Linux
         run: 
-          apt-get install python3-dev
+          sudo apt-get install python3-dev
         if: matrix.os == 'ubuntu-latest'
 
       - name: Install Pyinstaller
