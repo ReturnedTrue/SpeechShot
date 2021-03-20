@@ -37,6 +37,11 @@ jobs:
         with:
           python-version: 'pypy-3.7-v7.3.3'
 
+      - name: Setup Linux
+        run: 
+          apt-get install python3-dev
+        if: matrix.os == 'ubuntu-latest'
+
       - name: Install Pyinstaller
         run:
           pip install pyinstaller
