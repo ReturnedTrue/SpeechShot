@@ -37,11 +37,6 @@ jobs:
         with:
           python-version: '3.7'
 
-      - name: Linux test
-        run: 
-          find /usr/lib -name libpython*
-        if: matrix.os == 'ubuntu-latest'
-
       - name: Install Pyinstaller
         run:
           pip install pyinstaller
